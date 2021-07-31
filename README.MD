@@ -2,7 +2,7 @@
 
 ### Java基础
 
-* voliate：多线程的可见性。
+* volatile：多线程的可见性。
 
 * synchronized：不仅仅是变量，也可以方法等。
 
