@@ -2,11 +2,15 @@
 //
 //import java.util.ArrayList;
 //import java.util.List;
+//import java.util.concurrent.LinkedBlockingQueue;
+//import java.util.concurrent.locks.Condition;
+//import java.util.concurrent.locks.Lock;
+//import java.util.concurrent.locks.ReentrantLock;
 //
 ///**
 // * @author rollin
 // */
-//public class ProduceConsume {
+//public class ProduceConsume2 {
 //    // Store
 //    public static void main(String[] args) {
 //        Store store = new Store();
@@ -19,12 +23,6 @@
 //        t1.start();
 //        Thread t2 = new Thread(producer);
 //        t2.start();
-////        Thread t3 = new Thread(producer);
-////        t3.start();
-////        Thread t4 = new Thread(producer);
-////        t4.start();
-////        Thread t5 = new Thread(producer);
-////        t5.start();
 //
 //        Thread c1 = new Thread(consumer);
 //        c1.start();
@@ -40,37 +38,46 @@
 //
 //    private int maxSize = 2;
 //
-//    public void produce(Long obj) throws InterruptedException {
-//        synchronized (objectList) {
+//    private final Lock lock = new ReentrantLock();
+//    // 仓库满的条件变量
+//    private final Condition full = lock.newCondition();
+//    // 仓库空的条件变量
+//    private final Condition empty = lock.newCondition();
+//
+//    public void produce(Long obj) {
+//        lock.lock();
+//        {
 //            while (objectList.size() >= maxSize) {
 //                System.out.println("waiting p");
-//                objectList.wait();
+//                try {
+//                    full.await();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
 //            }
 //
 //            System.out.println("put: " + obj);
 //            objectList.add(obj);
 //
-//            objectList.notifyAll();
+//            empty.signalAll();
 //        }
+//        lock.unlock();
 //    }
 //
 //    public void consume() throws InterruptedException {
-//        synchronized (objectList) {
+//        lock.lock();
+//        {
 //            while (objectList.size() <= 0) {
 //                System.out.println("waiting");
-//                objectList.wait();
+//                empty.await();
 //                System.out.println("get lock: " + objectList.size());
 //            }
 //
-////            while (objectList.size() <= 0) {
-////                System.out.println("waiting");
-////                objectList.wait();
-////            }
-//
 //            System.out.println("get: " + objectList.remove(0));
 //
-//            objectList.notifyAll();
+//            full.signalAll();
 //        }
+//        lock.unlock();
 //    }
 //
 //}
