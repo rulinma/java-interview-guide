@@ -1,4 +1,4 @@
-package com.rulinma.interview.voliatedemo;
+package com.rulinma.interview;
 
 import java.lang.ref.SoftReference;
 

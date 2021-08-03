@@ -1,4 +1,4 @@
-package com.rulinma.interview.voliatedemo;
+package com.rulinma.interview;
 
 import java.util.Random;
 import java.util.concurrent.locks.ReentrantLock;
