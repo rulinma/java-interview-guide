@@ -1,11 +1,11 @@
 import java.util.*;
 
-class Solution2 {
+class L5825 {
 
     public static void main(String[] args) {
         int[][] mat = new int[][]{{1}, {2}, {3}};
 
-        Solution2 solution = new Solution2();
+        L5825 solution = new L5825();
 
         int re = solution.minimizeTheDifference(mat, 100);
 
