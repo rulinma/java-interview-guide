@@ -1,6 +1,5 @@
-package com.rulinma.interview.alo;
+package com.rulinma.test.alo;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 

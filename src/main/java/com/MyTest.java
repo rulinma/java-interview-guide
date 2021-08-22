@@ -1,9 +1,18 @@
 package com;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MyTest {
+
+    public static int[] rearrangeArray2(int[] nums) {
+        Arrays.sort(nums);
+        for (int i = 2; i < nums.length; i += 2) {
+            nums[i] = nums[i] ^ nums[i - 1] ^ (nums[i - 1] = nums[i]);
+        }
+        return nums;
+    }
 
     public static void main(String[] args) {
         int[] nums = new int[]{1, 2, 3};

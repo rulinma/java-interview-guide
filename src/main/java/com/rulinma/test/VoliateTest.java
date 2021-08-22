@@ -1,4 +1,4 @@
-package com.rulinma.interview;
+package com.rulinma.test;
 
 /**
  * @author rollin

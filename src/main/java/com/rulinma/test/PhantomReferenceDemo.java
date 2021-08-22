@@ -1,4 +1,4 @@
-package com.rulinma.interview;
+package com.rulinma.test;
 
 import java.lang.ref.PhantomReference;
 import java.lang.ref.ReferenceQueue;
